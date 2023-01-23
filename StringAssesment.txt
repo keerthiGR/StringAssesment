@@ -1,0 +1,48 @@
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+public class Strrev {
+	public static void main(String args[]) {
+		
+		List<String> words=List.of("Hello Word","Malayalam","fo-fo","ab","aba","ab","ab-ab");
+		int totalpolymorpism=0;
+		int isogram=0;
+		int tatonium=0;
+		for(String word:words) {
+			String inputword=word.toLowerCase();
+			String reverse="";
+			String nospace="";
+			String[] pstr=inputword.split(" ");
+			for(String str:pstr) {
+				nospace=nospace.concat(str);
+				
+			}
+			for(int i=nospace.length()-1;i>=0;i--) {
+				reverse=reverse+nospace.charAt(i);
+			}
+			if(nospace.equals(reverse)) {
+				totalpolymorpism++;
+			}
+			else {
+				String[] isoarr=inputword.split("");
+				Set<String> strset=new HashSet<>(Arrays.asList(isoarr));
+				if(inputword.length()==strset.size()) {
+					isogram++;
+				}
+			}
+			String[] s=inputword.split("-");
+			if(s.length >=2 && s[0].equals(s[1])) {
+				tatonium++;
+			}
+		}
+		System.out.println(totalpolymorpism);
+		System.out.println(isogram);
+		System.out.println(tatonium);
+	}
+	
+
+}
